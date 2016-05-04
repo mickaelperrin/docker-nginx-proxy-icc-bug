@@ -1,0 +1,6 @@
+webapp:
+  image: nginx
+  environment:
+    - VIRTUAL_HOST=www.test.docker
+  volumes:
+    - ./www_root:/usr/share/nginx/html:ro
