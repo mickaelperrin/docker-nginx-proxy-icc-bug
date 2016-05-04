@@ -6,3 +6,4 @@ webapp:
     - proxy_nginx-proxy_1
   volumes:
     - ./www_root:/usr/share/nginx/html:ro
+  restart: unless-stopped

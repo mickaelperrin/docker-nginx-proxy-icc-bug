@@ -6,7 +6,7 @@ nginx-proxy:
   volumes:
     - ./certs:/etc/nginx/certs
     - ./conf.d:/etc/nginx/conf.d
-#  restart: always
+  restart: unless-stopped
 docker-gen:
   image: jwilder/docker-gen
   command: -notify-sighup bug_nginx-proxy_1 -watch -only-exposed /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
@@ -15,4 +15,4 @@ docker-gen:
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock:ro
     - ./templates:/etc/docker-gen/templates
-#  restart: always
+  restart: unless-stopped
