@@ -84,3 +84,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# nginx-proxy
+/conf.d/*
+!/conf.d/.gitkeep
+/certs/*
+!/certs/.gitkeep
