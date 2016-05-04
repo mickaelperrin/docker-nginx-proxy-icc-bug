@@ -1,18 +1,15 @@
-nginx-proxy:
-  image: nginx
-  ports:
-    - 80:80
-    - 443:443
-  volumes:
-    - ./certs:/etc/nginx/certs
-    - ./conf.d:/etc/nginx/conf.d
-  restart: unless-stopped
-docker-gen:
-  image: jwilder/docker-gen
-  command: -notify-sighup bug_nginx-proxy_1 -watch -only-exposed /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
-  volumes_from:
-    - nginx-proxy
-  volumes:
-    - /var/run/docker.sock:/tmp/docker.sock:ro
-    - ./templates:/etc/docker-gen/templates
-  restart: unless-stopped
+version: '2'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./certs:/etc/nginx/certs
+      - ./conf.d:/etc/nginx/conf.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./templates:/etc/docker-gen/templates
+    restart: unless-stopped
+
