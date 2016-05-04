@@ -51,6 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.vm.box = "ubuntu/trusty64"
 	config.vm.network "private_network", type: "dhcp"
 	config.vm.hostname = 'test.docker'
+	config.hostmanager.aliases = %w(www.test.docker)
 
 	config.hostmanager.enabled = true
     config.hostmanager.manage_host = true
