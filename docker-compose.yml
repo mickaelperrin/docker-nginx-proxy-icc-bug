@@ -3,6 +3,6 @@ webapp:
   environment:
     - VIRTUAL_HOST=www.test.docker
   external_links:
-    - proxy_nginx_1
+    - proxy_nginx-proxy_1
   volumes:
     - ./www_root:/usr/share/nginx/html:ro
