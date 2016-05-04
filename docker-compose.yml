@@ -2,5 +2,7 @@ webapp:
   image: nginx
   environment:
     - VIRTUAL_HOST=www.test.docker
+  external_links:
+    - proxy_nginx_1
   volumes:
     - ./www_root:/usr/share/nginx/html:ro
