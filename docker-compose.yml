@@ -1,9 +1,19 @@
-webapp:
-  image: nginx
-  environment:
-    - VIRTUAL_HOST=www.test.docker
-  external_links:
-    - proxy_nginx-proxy_1
-  volumes:
-    - ./www_root:/usr/share/nginx/html:ro
-  restart: unless-stopped
+version: '2'
+
+services:
+  webapp:
+    image: nginx
+    environment:
+      - VIRTUAL_HOST=www.test.docker
+    external_links:
+      - proxy_nginx-proxy_1
+    networks:
+      - proxy
+    volumes:
+      - ./www_root:/usr/share/nginx/html:ro
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external:
+      name: proxy_default
